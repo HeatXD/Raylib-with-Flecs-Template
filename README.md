@@ -1,2 +1,9 @@
-# Raylib-with-Flecs-Template-
+# Raylib-with-Flecs-Template
 A template for raylib with a custom flecs pipline for raylib
+
+Flecs version 2.0.0
+Raylib 3.0.0 (installed with raylib installer with the mingW compiler)
+Text Editor VSCODE
+
+Have fun coding
+HeatXD
