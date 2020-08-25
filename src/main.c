@@ -15,7 +15,7 @@ void AfterDrawing(ecs_iter_t *it){
     EndDrawing();
 }
 void Move(ecs_iter_t *it){
-    Position *p = ecs_column(it, Position, 1); 
+    Position2 *p = ecs_column(it, Position2, 1); 
 
     for (int i = 0; i < it->count; i++)
     {   
@@ -30,13 +30,13 @@ void Move(ecs_iter_t *it){
     }
 }
 void DrawSquare(ecs_iter_t *it){
-    Position *p = ecs_column(it, Position, 1); 
+    Position2 *p = ecs_column(it, Position2, 1); 
     Size2 *s = ecs_column(it, Size2, 2); 
     ColorType *c = ecs_column(it, ColorType, 3); 
 
     for (int i = 0; i < it->count; i++)
     {        
-        DrawRectangleLines(p[i].x, p[i].y, s[i].width,s[i].height,c->color);
+        DrawRectangleLines(p[i].x, p[i].y, s[i].width,s[i].height,c[i].color);
     }
 
 }
@@ -50,7 +50,7 @@ int main(void)
     //Create The ecs world (Flecs)
     ecs_world_t *world = ecs_init();
     //Declare components (Flecs)
-    ECS_COMPONENT(world, Position);
+    ECS_COMPONENT(world, Position2);
     ECS_COMPONENT(world, Size2);
     ECS_COMPONENT(world, ColorType);
     // Create a tag for each phase in the custom pipeline. (Flecs)
@@ -68,8 +68,8 @@ int main(void)
     ECS_TAG(world, RENDERER);
     ECS_ENTITY(world, RenderEntity, RENDERER);
     //Create a test entity and set variabels (Flecs)
-    ECS_ENTITY(world, TestEntity, Position, Size2, ColorType);
-    ecs_set(world, TestEntity, Position, {20, 20});
+    ECS_ENTITY(world, TestEntity, Position2, Size2, ColorType);
+    ecs_set(world, TestEntity, Position2, {20, 20});
     ecs_set(world, TestEntity, Size2, {100, 100});
     ecs_set(world, TestEntity, ColorType, {RED});
     //Define ecs systems (Flecs)
@@ -80,7 +80,7 @@ int main(void)
     //Pre Draw Systems
     ECS_SYSTEM(world,BeforeDrawing,PreDraw,RENDERER);
     // On Draw Systems
-    ECS_SYSTEM(world,DrawSquare, OnDraw, Position, Size2, ColorType);
+    ECS_SYSTEM(world,DrawSquare, OnDraw, Position2, Size2, ColorType);
     // Post Draw Systems
     ECS_SYSTEM(world,AfterDrawing,PostDraw,RENDERER);
 

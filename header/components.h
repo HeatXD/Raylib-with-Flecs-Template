@@ -11,5 +11,5 @@ typedef struct ColorType{
     Color color;
 }ColorType;
 
-typedef Vector2 Position;
+typedef Vector2 Position2;
 
