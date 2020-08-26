@@ -45,7 +45,7 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_NAME);// Create a window (Raylib)
-    SetTargetFPS(60);    // Set our game to run at 60 frames-per-second (Raylib)
+    SetTargetFPS(500);    // Set our game to run at 60 frames-per-second (Raylib)
     //--------------------------------------------------------------------------------------
     //Create The ecs world (Flecs)
     ecs_world_t *world = ecs_init();
@@ -85,12 +85,7 @@ int main(void)
     ECS_SYSTEM(world,AfterDrawing,PostDraw,RENDERER);
 
     // Main game loop (Raylib)
-    while (!WindowShouldClose())    // Detect window close button or ESC key (Raylib)
-    {
-        // Progress the simulation (Flecs)
-        ecs_progress(world, 0);
-        //----------------------------------------------------------------------------------
-    }
+    while (ecs_progress(world, 0) && !WindowShouldClose());    // Detect window close button or ESC key (Raylib)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();           // Close window and OpenGL context (Raylib)
