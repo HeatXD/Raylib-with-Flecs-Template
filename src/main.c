@@ -45,7 +45,7 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_NAME);// Create a window (Raylib)
-    SetTargetFPS(500);    // Set our game to run at 60 frames-per-second (Raylib)
+    SetTargetFPS(60);    // Set our game to run at 60 frames-per-second (Raylib)
     //--------------------------------------------------------------------------------------
     //Create The ecs world (Flecs)
     ecs_world_t *world = ecs_init();
@@ -75,7 +75,7 @@ int main(void)
     //Define ecs systems (Flecs)
     //Pre Update Systems
     //On Update Systems
-    ECS_SYSTEM(world, Move, OnUpdate, Position);
+    ECS_SYSTEM(world, Move, OnUpdate, Position2);
     //Post Update Systems
     //Pre Draw Systems
     ECS_SYSTEM(world,BeforeDrawing,PreDraw,RENDERER);
